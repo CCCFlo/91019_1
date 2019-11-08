@@ -1,0 +1,54 @@
+#thisPlayerName{
+	font-size: 30px;
+}
+
+p {
+	font-family: Arial
+}
+
+#thisPlayer{
+	position:absolute;
+  left:100px;
+  top:300px;
+}
+
+#OtherOnePlayerName{
+	position:absolute;
+	left:50px;
+	top:50px;
+}
+
+#OtherTwoPlayerName{
+	position:absolute;
+	display: table-cell;
+  text-align: right;
+	right :50px;
+	top:50px;
+}
+
+table {
+	border-width: 0;
+  position: relative;
+	left: -4px;
+}
+
+
+td {
+	border-width : 0;
+}
+
+button {
+	border-radius: 12px;
+	background: #8AC007;
+	font-size: 24px;
+	width: 60px;
+	height: 36px;
+	margin: auto;
+	font-family: Arial;
+	text-align: center;
+}
+
+#goButton:hover {
+	box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+
+}

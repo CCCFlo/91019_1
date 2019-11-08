@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>Hello React!</title>
+<script src="https://cdn.staticfile.org/react/16.4.0/umd/react.development.js"></script>
+<script src="https://cdn.staticfile.org/react-dom/16.4.0/umd/react-dom.development.js"></script>
+<script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+<link rel="icon" href="data:image/ico;base64,aWNv">
+<script type="text/javascript" src="game1/functions.js"></script>
+<script type="text/babel">
+var cardsc = new Array()
+class Card extends React.Component {
+  constructor(props) {
+    super(props);
+		const num = props.num
+		console.log(num)
+    this.state = {isSelected:false};
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(){
+/*
+    this.setState(prevState => ({
+      isSelected: !prevState.isSelected
+    }))*/
+    if (this.state.isSelected == true){
+      this.setState({isSelected:false})
+      document.getElementById('bt'+this.props.num).style.color="black"
+      var ind = cardsc.lastIndexOf(this.props.num)
+      cardsc.splice(ind,1)
+    }
+    if (this.state.isSelected == false){
+      this.setState({isSelected:true})
+      document.getElementById('bt'+this.props.num).style.color="yellow"
+      cardsc.push(this.props.num)
+      cardsc.sort((a,b)=>(b-a))
+
+    }
+    var parent=document.getElementById("div2");
+    var child=document.getElementById("cardschosed")
+    var para=document.createElement("p");
+    var node=document.createTextNode(cardsc.map((value)=>numToImg(value)))
+    para.appendChild(node);
+    para.setAttribute('id','cardschosed')
+    parent.replaceChild(para,child);
+  }
+
+  render() {
+    return (
+      <td id={this.props.num}>
+        <button id={'bt'+this.props.num} onClick={this.handleChange.bind(this)}>{numToImg(this.props.num)}</button>
+      </td>
+    );
+  }
+}
+
+class CardManager extends React.Component{
+  constructor(props) {
+    super(props);
+    this.state = {seqs : resu}
+    console.log(this.state.seqs)
+  }
+  render() {
+    return (
+
+      <table border={1}>
+      <tbody>
+      <tr>
+      {this.state.seqs[0].map((value)=>
+        <Card num={value}></Card>)}
+      </tr>
+
+      </tbody></table>
+
+
+    );
+  }
+
+
+}
+
+ReactDOM.render(
+  <CardManager />,
+  document.getElementById('example')
+)
+
+</script>
+</head>
+<link rel="stylesheet" type="text/css" href="game1/style.css">
+<body>
+<div id=OtherOnePlayerName>
+<p style="font-size:25px">Player2</p>
+<p>17 cards left</p>
+</div>
+<div id=OtherTwoPlayerName>
+<p style="font-size:25px">Player3</p>
+<p>20 cards left</p>
+</div>
+<div id="thisPlayer">
+<p id=thisPlayerName>Player1</p>
+<div id="example">
+</div>
+<div id="div2">
+  <p>You have chose:</p>
+  <p id="cardschosed"></p>
+  <button id="goButton"type="button" name="button" onClick="dele()">Go!</button>
+</div>
+</div>
+
+</body>

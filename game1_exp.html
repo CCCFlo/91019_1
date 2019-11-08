@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>Hello React!</title>
+<script src="https://cdn.staticfile.org/react/16.4.0/umd/react.development.js"></script>
+<script src="https://cdn.staticfile.org/react-dom/16.4.0/umd/react-dom.development.js"></script>
+<script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+<script type="text/javascript" src="C:/Users/acer/Documents/JS/91019_1/functions.js"></script>
+<link rel="icon" href="data:image/ico;base64,aWNv">
+<script type="text/babel">
+class Card extends React.Component {
+  constructor(props) {
+    super(props);
+		const num = props.num
+		console.log(num)
+    this.state = {isSelected:0,haveClicked:0};
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(event){
+    if (this.state.isSelected == 0){
+      this.setState({isSelected:1})
+    }
+    if (this.state.isSelected == 1){
+      this.setState({isSelected:0})
+    }
+  }
+
+  render() {
+    return (
+      <td id={this.props.num}>
+        {numToImg(this.props.num)}
+      </td>
+    );
+  }
+}
+
+class CardManager extends React.Component{
+  constructor(props) {
+    super(props);
+    this.state = {seqs : initia()}
+    console.log(this.state.seqs)
+  }
+  render() {
+    return (
+      <table border={1}>
+      <tbody>
+      <tr>
+      {this.state.seqs[0].map((value)=>
+        <Card num={value}></Card>)}
+      </tr>
+      <tr>
+      {this.state.seqs[1].map((value)=>
+        <Card num={value}></Card>)}
+      </tr>
+      <tr>
+      {this.state.seqs[2].map((value)=>
+        <Card num={value}></Card>)}
+      </tr>
+      <tr>
+      {this.state.seqs[3].map((value)=>
+        <Card num={value}></Card>)}
+      </tr>
+      </tbody></table>
+
+    );
+  }
+
+
+}
+
+ReactDOM.render(
+  <CardManager />,
+  document.getElementById('example')
+)
+
+</script>
+</head>
+<link rel="stylesheet" type="text/css" href="C:/Users/acer/Documents/JS/91019_1/style.css">
+<body>
+
+
+<div id="example">
+
+</div>
+
+</body>
