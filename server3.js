@@ -69,7 +69,13 @@ var server = http.createServer(function (request, response) {
           response.end();
           console.log('Finish the giving')
        }});
-}).listen(80);
+})
 
 
 var io = require('socket.io').listen(server)
+
+io.sockets.on('connection', function(socket){
+  console.log('Un client est connecte!')
+})
+
+server.listen(8080);
