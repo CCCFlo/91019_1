@@ -43,7 +43,7 @@ cont = 'var resu = new Array(4)\n'+'resu[0]='+'[' + resu[0].toString() + ']\n'
 //+'resu[2]='+'[' + resu[2].toString() + ']\n'
 //+'resu[3]='+'[' + resu[3].toString() + ']\n'
 
-http.createServer(function (request, response) {
+var server = http.createServer(function (request, response) {
     var pathname = url.parse(request.url).pathname;
     if (pathname == '/'){
     pathname = '/game1/game1.html'
@@ -70,3 +70,6 @@ http.createServer(function (request, response) {
           console.log('Finish the giving')
        }});
 }).listen(80);
+
+
+var io = require('socket.io').listen(server)
